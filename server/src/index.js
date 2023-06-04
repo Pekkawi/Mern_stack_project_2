@@ -6,8 +6,7 @@ import cors from "cors";
 
 import mongoose from "mongoose";
 // WRITE QUERIES TO MONGODB
-import { userRouter } from "./routes/users.js";
-
+import { userRouter } from "./routes/user.js";
 const app = express();
 
 app.use(express.json()); // When you get data from the front end it will convert it into to json
