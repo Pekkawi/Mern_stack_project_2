@@ -1,12 +1,26 @@
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+  const [cookies, setCookies] = useCookies(["acces_token"]);
+  //IF THERE'S NO COOKIE THAN LOGIN ELSE LOGOUT BUTTON
+  const navigate = useNavigate();
+  const logout = () => {
+    setCookies("acces_token", "");
+    window.localStorage.removeItem("userID");
+    navigate("/auth");
+  };
   return (
     <div className="navbar">
       <Link to="/">Home</Link>
       <Link to="/create-recipe">Create Recipe</Link>
       <Link to="/saved-recipes">Saved Recipes</Link>
-      <Link to="/auth">Login/Register</Link>
+      {!cookies.acces_token ? (
+        <Link to="/auth">Login/Register</Link>
+      ) : (
+        <button onClick={logout}>Logout</button>
+      )}
     </div>
   );
 };
