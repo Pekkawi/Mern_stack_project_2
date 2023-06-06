@@ -1,32 +1,32 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 const RecipeSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   ingredients: [
     {
       type: String,
-      require: true,
+      required: true,
     },
-  ], //by putting square brackets mongodb will know that this is an array
+  ],
   instructions: {
-    tpye: String,
-    require: true,
+    type: String,
+    required: true,
   },
-  imageURL: {
-    tpye: String,
-    require: true,
+  imageUrl: {
+    type: String,
+    required: true,
   },
   cookingTime: {
     type: Number,
-    require: true,
+    required: true,
   },
   userOwner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
-    require: true,
+    required: true,
   },
 });
 

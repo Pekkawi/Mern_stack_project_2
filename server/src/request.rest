@@ -15,3 +15,18 @@ Content-Type: application/json
    "password":"socool1234"
 }
 
+###
+
+POST http://localhost:3001/recipes
+Content-Type: application/json
+
+{
+   "name":"Steak",
+   "ingredients":["beef","salt"],
+   "instructions":"Baste in the oven",
+   "imageURL":"None",
+   "cookingTime":20,
+   "userOwner":"647e3e5904f1b808d5aaf52e"
+}
+
+
