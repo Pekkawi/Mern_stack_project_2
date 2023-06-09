@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
+import { useNavigate } from "react-router-dom";
 
 export const CreateRecipe = () => {
   const userID = useGetUserID();
@@ -13,6 +14,8 @@ export const CreateRecipe = () => {
     cookingTime: 0,
     userOwner: userID,
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -35,6 +38,7 @@ export const CreateRecipe = () => {
     try {
       await axios.post("http://localhost:3001/recipes", recipe);
       alert("Recipe Created");
+      navigate("/");
     } catch (err) {
       console.error(err);
     }
