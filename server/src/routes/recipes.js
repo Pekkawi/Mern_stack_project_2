@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { RecipeModel } from "../models/Recipes.js";
 import { UserModel } from "../models/Users.js";
+import { verifyToken } from "./user.js";
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   const recipe = new RecipeModel(req.body); //create a new instance
   try {
     //const response = await RecipeModel.find({}); // you can find based on specific fields / it will return everything this way
@@ -25,7 +26,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/", async (req, res) => {
+router.put("/", verifyToken, async (req, res) => {
+  //enable route for logged in users only
   try {
     //const response = await RecipeModel.find({}); // you can find based on specific fields / it will return everything this way
     const recipe = await RecipeModel.findById(req.body.recipeID);

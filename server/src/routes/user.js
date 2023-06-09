@@ -37,3 +37,22 @@ router.post("/login", async (req, res) => {
 });
 
 export { router as userRouter };
+
+export const verifyToken = (req, res, next) => {
+  //MIDDLEWARE
+  const token = req.headers.authorization;
+
+  if (token) {
+    if (token) {
+      jwt.verify(token, "secret", (err) => {
+        if (err) {
+          return res.sendStatus(403); //status quote | user not authorized
+        }
+        next();
+      }); //verify if the token is true
+    } else {
+      res.sendStatus(401); //user not logged in aka no token
+      //if you don't send a token from the front end it will return an error
+    }
+  }
+};

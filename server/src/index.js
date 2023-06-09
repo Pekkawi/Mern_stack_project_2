@@ -14,6 +14,8 @@ app.use(express.json()); // When you get data from the front end it will convert
 //for every single request
 app.use(cors());
 app.use("/auth", userRouter); // all endpoints related to authentification will be in the users.js file
+//all end points related to userRouter
+
 app.use("/recipes", recipesRouter);
 
 mongoose.connect(
