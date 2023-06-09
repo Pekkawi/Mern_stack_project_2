@@ -21,7 +21,7 @@ export const Home = () => {
     const fetchSavedRecipes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
+          `http://localhost:3001/recipes/savedRecipes/ids/${userID}` // use the special reverse slash braces ` ` <---
         );
         setSavedRecipes(response.data.savedRecipes);
       } catch (err) {
@@ -46,7 +46,7 @@ export const Home = () => {
   };
 
   const isRecipeSaved = (id) => savedRecipes.includes(id);
-
+  //{savedRecipes.includes(recipe._id) && <h1>ALREADY SAVED</h1>}  ZOMBIE CODE
   return (
     <div>
       <h1>Recipes</h1>
@@ -57,9 +57,13 @@ export const Home = () => {
               <h2>{recipe.name}</h2>
               <button
                 onClick={() => saveRecipe(recipe._id)}
-                disabled={isRecipeSaved(recipe._id)}
+                disabled={isRecipeSaved(recipe._id)} //if this is true then it will disable the button
               >
-                {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
+                {
+                  isRecipeSaved(recipe._id)
+                    ? "Saved"
+                    : "Save" /*added functionality */
+                }
               </button>
             </div>
             <div className="instructions">
